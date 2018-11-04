@@ -58,11 +58,11 @@ public class Config
             "Be sure to migrate your edits when updating the plugin."
         });
 
-        public static final ConfigDefault<Boolean> DISABLE_STOCK = new ConfigDefault<Boolean>("disable_stock_system", false, new String[] {
-    		"Disables the stock system entirely. Listings will function like",
-    		" they did in previous versions, minus the mailbox. Items will",
-    		" go straight to the player's cursor. (Default: false)"
-        });
+//        public static final ConfigDefault<Boolean> DISABLE_STOCK = new ConfigDefault<Boolean>("disable_stock_system", false, new String[] {
+//    		"Disables the stock system entirely. Listings will function like",
+//    		" they did in previous versions, minus the mailbox. Items will",
+//    		" go straight to the player's cursor. (Default: false)"
+//        });
         public static final ConfigDefault<Integer> STOCK_SLOTS = new ConfigDefault<Integer>("stock_slots", 16, new String[] {
             "How many stock slots to give each player. (Default: 16)"
         });

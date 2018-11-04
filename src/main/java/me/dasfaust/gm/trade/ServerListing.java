@@ -101,10 +101,10 @@ public class ServerListing extends MarketObject
                 return stack;
             }
             //player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
-            if (Core.instance.config().get(Config.Defaults.DISABLE_STOCK))
-            {
+//            if (Core.instance.config().get(Config.Defaults.DISABLE_STOCK))
+//            {
                 player.setItemOnCursor(Core.instance.storage().get(itemId).setAmount(amount).checkNbt().bukkit());
-            }
+//            }
         }
         return null;
     }

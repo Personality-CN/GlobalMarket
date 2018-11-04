@@ -44,9 +44,11 @@ public class CreationMenu extends MenuBase<MarketObject>
 		{
 			return Config.functionItems.get("FUNC_CREATE_LISTING_CANCEL").clone()
 			.setDisplayName(LocaleHandler.get().get("menu_creation_cancel"))
-			.addLoreLast(Arrays.asList(Core.instance.config().get(
-				Defaults.DISABLE_STOCK) ?
-				new String[] {LocaleHandler.get().get("menu_creation_cancel_return_listings")} : new String[] {LocaleHandler.get().get("menu_creation_cancel_return_stock")})
+			.addLoreLast(Arrays.asList(
+					/*Core.instance.config().get(
+				Defaults.DISABLE_STOCK) ?*/
+				new String[] {LocaleHandler.get().get("menu_creation_cancel_return_listings")}
+				/*: new String[] {LocaleHandler.get().get("menu_creation_cancel_return_stock")}*/)
 			).tag();
 		}
 
@@ -65,14 +67,14 @@ public class CreationMenu extends MenuBase<MarketObject>
 				@Override
 				public void run()
 				{
-					if (Core.instance.config().get(Defaults.DISABLE_STOCK))
-					{
+//					if (Core.instance.config().get(Defaults.DISABLE_STOCK))
+//					{
 						Core.instance.handler().initViewer(player, Menus.MENU_LISTINGS);
-					}
-					else
-					{
-						Core.instance.handler().initViewer(player, Menus.MENU_STOCK);
-					}
+//					}
+//					else
+//					{
+//						Core.instance.handler().initViewer(player, Menus.MENU_STOCK);
+//					}
 				}
 			}.runTaskLater(Core.instance, 1);
 			return null;
@@ -90,8 +92,9 @@ public class CreationMenu extends MenuBase<MarketObject>
 		public WrappedStack build(MarketViewer viewer)
 		{
 			WrappedStack stack = 
-					Core.instance.config().get(Defaults.DISABLE_STOCK) ?
-							sessions.get(viewer.uuid).stack.clone().setAmount(1) : Core.instance.storage().get(sessions.get(viewer.uuid).stock.itemId);
+					/*Core.instance.config().get(Defaults.DISABLE_STOCK) ?*/
+							sessions.get(viewer.uuid).stack.clone().setAmount(1)
+							/*: Core.instance.storage().get(sessions.get(viewer.uuid).stock.itemId)*/;
 			stack.setDisplayName(LocaleHandler.get().get("menu_creation_price"));
 			stack.addLoreLast(Arrays.asList(LocaleHandler.get().get("menu_creation_price_info", Core.instance.econ().format(sessions.get(viewer.uuid).price)).split("\n")));
 			return stack.clone().tag();
@@ -141,8 +144,9 @@ public class CreationMenu extends MenuBase<MarketObject>
 		public WrappedStack build(MarketViewer viewer)
 		{
 			WrappedStack stack = 
-					Core.instance.config().get(Defaults.DISABLE_STOCK) ?
-							sessions.get(viewer.uuid).stack.clone().setAmount(1) : Core.instance.storage().get(sessions.get(viewer.uuid).stock.itemId);
+					/*Core.instance.config().get(Defaults.DISABLE_STOCK) ?*/
+							sessions.get(viewer.uuid).stack.clone().setAmount(1)
+							/*: Core.instance.storage().get(sessions.get(viewer.uuid).stock.itemId)*/;
 			stack.setDisplayName(LocaleHandler.get().get("menu_creation_amount"));
 			int amount = sessions.get(viewer.uuid).amount;
 			stack.addLoreLast(Arrays.asList(LocaleHandler.get().get("menu_creation_amount_info", amount).split("\n")));
@@ -173,7 +177,7 @@ public class CreationMenu extends MenuBase<MarketObject>
 				{
 					ses.amount += hotbar;
 				}
-				int am = (Core.instance.config().get(Defaults.DISABLE_STOCK) ? ses.stack.getAmount() : ses.stock.amount);
+				int am = /*(Core.instance.config().get(Defaults.DISABLE_STOCK) ? */ses.stack.getAmount()/* : ses.stock.amount)*/;
 				if (ses.amount > am)
 				{
 					ses.amount = am;
@@ -224,8 +228,8 @@ public class CreationMenu extends MenuBase<MarketObject>
 		{
 			CreationSession ses = sessions.get(viewer.uuid);
 			
-			if (Core.instance.config().get(Defaults.DISABLE_STOCK))
-			{
+//			if (Core.instance.config().get(Defaults.DISABLE_STOCK))
+//			{
 				if (!player.getInventory().containsAtLeast(ses.stack.checkNbt().bukkit(), ses.amount)
 						|| !player.getInventory().removeItem(ses.stack.checkNbt().setAmount(ses.amount).bukkit()).isEmpty())
 				{
@@ -234,21 +238,21 @@ public class CreationMenu extends MenuBase<MarketObject>
 					viewer.lastStackClicked.setLore(lore);
 					return viewer.lastStackClicked;
 				}
-			}
-			else
-			{
-				if (Core.instance.storage().getAll(StockedItem.class, StorageHelper.allStockFor(viewer.uuid, ses.stock.itemId)).isEmpty())
-				{
-					List<String> lore = viewer.lastStackClicked.getLore();
-					lore.set(lore.size() - 1, ChatColor.RED + LocaleHandler.get().get("general_no_stock"));
-					viewer.lastStackClicked.setLore(lore);
-					return viewer.lastStackClicked;
-				}
-			}
+//			}
+//			else
+//			{
+//				if (Core.instance.storage().getAll(StockedItem.class, StorageHelper.allStockFor(viewer.uuid, ses.stock.itemId)).isEmpty())
+//				{
+//					List<String> lore = viewer.lastStackClicked.getLore();
+//					lore.set(lore.size() - 1, ChatColor.RED + LocaleHandler.get().get("general_no_stock"));
+//					viewer.lastStackClicked.setLore(lore);
+//					return viewer.lastStackClicked;
+//				}
+//			}
 			MarketListing listing = new MarketListing();
 			listing.amount = ses.amount;
 			listing.price = ListingsHelper.round(ses.price);
-			listing.itemId = Core.instance.config().get(Defaults.DISABLE_STOCK) ? Core.instance.storage().store(ses.stack) : ses.stock.itemId;
+			listing.itemId = /*Core.instance.config().get(Defaults.DISABLE_STOCK) ? */Core.instance.storage().store(ses.stack)/* : ses.stock.itemId*/;
 			listing.seller = viewer.uuid;
 			listing.world = player.getWorld().getUID();
 			listing.creationTime = System.currentTimeMillis();
@@ -260,14 +264,14 @@ public class CreationMenu extends MenuBase<MarketObject>
 				@Override
 				public void run()
 				{
-					if (Core.instance.config().get(Defaults.DISABLE_STOCK))
-					{
+//					if (Core.instance.config().get(Defaults.DISABLE_STOCK))
+//					{
 						Core.instance.handler().initViewer(player, Menus.MENU_LISTINGS);
-					}
-					else
-					{
-						Core.instance.handler().initViewer(player, Menus.MENU_STOCK);
-					}
+//					}
+//					else
+//					{
+//						Core.instance.handler().initViewer(player, Menus.MENU_STOCK);
+//					}
 				}
 			}.runTaskLater(Core.instance, 1);
 			return null;

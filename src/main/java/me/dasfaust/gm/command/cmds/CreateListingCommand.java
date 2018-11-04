@@ -76,39 +76,39 @@ public class CreateListingCommand extends CommandContext
             }
         }
         long storageId = Core.instance.storage().store(stack);
-        if (!Core.instance.config().get(Config.Defaults.DISABLE_STOCK))
-        {
-            if (Core.instance.storage().getAll(MarketListing.class, StorageHelper.allListingsFor(player.getUniqueId(), storageId)).size() > 0)
-            {
-                sender.sendMessage(LocaleHandler.get().get("command_create_failed_already_listed"));
-                return;
-            }
-            if (StorageHelper.isStockFull(player.getUniqueId()))
-            {
-                sender.sendMessage(LocaleHandler.get().get("command_create_failed_stock_full"));
-                return;
-            }
-            StockedItem stock = StorageHelper.stockFor(player.getUniqueId(), storageId);
-            if (stock != null)
-            {
-                if (stock.amount + amount > Core.instance.config().get(Config.Defaults.STOCK_SLOTS_SIZE))
-                {
-                    sender.sendMessage(LocaleHandler.get().get("command_create_failed_stock_full"));
-                    return;
-                }
-                StorageHelper.updateStockAmount(stock, stock.amount + amount);
-            }
-            else
-            {
-                stock = new StockedItem();
-                stock.amount = amount;
-                stock.creationTime = System.currentTimeMillis();
-                stock.itemId = storageId;
-                stock.owner = player.getUniqueId();
-                stock.world = player.getWorld().getUID();
-                Core.instance.storage().store(stock);
-            }
-        }
+//        if (!Core.instance.config().get(Config.Defaults.DISABLE_STOCK))
+//        {
+//            if (Core.instance.storage().getAll(MarketListing.class, StorageHelper.allListingsFor(player.getUniqueId(), storageId)).size() > 0)
+//            {
+//                sender.sendMessage(LocaleHandler.get().get("command_create_failed_already_listed"));
+//                return;
+//            }
+//            if (StorageHelper.isStockFull(player.getUniqueId()))
+//            {
+//                sender.sendMessage(LocaleHandler.get().get("command_create_failed_stock_full"));
+//                return;
+//            }
+//            StockedItem stock = StorageHelper.stockFor(player.getUniqueId(), storageId);
+//            if (stock != null)
+//            {
+//                if (stock.amount + amount > Core.instance.config().get(Config.Defaults.STOCK_SLOTS_SIZE))
+//                {
+//                    sender.sendMessage(LocaleHandler.get().get("command_create_failed_stock_full"));
+//                    return;
+//                }
+//                StorageHelper.updateStockAmount(stock, stock.amount + amount);
+//            }
+//            else
+//            {
+//                stock = new StockedItem();
+//                stock.amount = amount;
+//                stock.creationTime = System.currentTimeMillis();
+//                stock.itemId = storageId;
+//                stock.owner = player.getUniqueId();
+//                stock.world = player.getWorld().getUID();
+//                Core.instance.storage().store(stock);
+//            }
+//        }
         if (stack.getAmount() == amount)
         {
             player.setItemInHand(new ItemStack(Material.AIR));

@@ -771,24 +771,24 @@ public class Menus
 		MENU_STORAGE.addFunction(53, Menus.FUNC_NEXTPAGE);
 		MENU_STORAGE.addFunction(52, Menus.FUNC_STORAGE_NAVIGATION);
 
-		if (Core.instance.config().get(Defaults.DISABLE_STOCK))
-		{
+//		if (Core.instance.config().get(Defaults.DISABLE_STOCK))
+//		{
 			MENU_LISTINGS.addFunction(46, FUNC_NOSTOCK_CREATE_LISTING);
-		}
-		else
-		{
-			MENU_STOCK.addFunction(46, FUNC_NAVIGATION);
-			MENU_LISTINGS.addFunction(46, FUNC_NAVIGATION);
-
-			MENU_SERVER_LISTINGS.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
-			MENU_SERVER_LISTINGS.addFunction(46, FUNC_NAVIGATION);
-
-			if (Core.instance.config().get(Defaults.ENABLE_INFINITE_LISTINGS))
-			{
-				MENU_STOCK.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
-				MENU_LISTINGS.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
-			}
-		}
+//		}
+//		else
+//		{
+//			MENU_STOCK.addFunction(46, FUNC_NAVIGATION);
+//			MENU_LISTINGS.addFunction(46, FUNC_NAVIGATION);
+//
+//			MENU_SERVER_LISTINGS.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
+//			MENU_SERVER_LISTINGS.addFunction(46, FUNC_NAVIGATION);
+//
+//			if (Core.instance.config().get(Defaults.ENABLE_INFINITE_LISTINGS))
+//			{
+//				MENU_STOCK.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
+//				MENU_LISTINGS.addFunction(47, FUNC_SERVER_LISTINGS_NAVIGATION);
+//			}
+//		}
 	}
 
 	public static void addButton(MenuBase<?> menu, int slot, FunctionButton button)

@@ -60,6 +60,7 @@
                                     <shadedPattern>lib.jedis.util</shadedPattern>
                                 </relocation>
                             </relocations>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
                     </execution>
                 </executions>
@@ -133,6 +134,43 @@
             <version>3.0.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.totemcraftmc</groupId>
+            <artifactId>MailboxReloaded-api</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.totemcraftmc</groupId>
+            <artifactId>ClayCentral-bukkit-api</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.mineclay</groupId>
+            <artifactId>WarApps-bukkit-plugin</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.totemcraftmc</groupId>
+            <artifactId>TCBaseLib-api</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.mineclay</groupId>
+            <artifactId>WarApps-bukkit-itemtags-ecoalternative</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.meowj</groupId>
+            <artifactId>LangUtils</artifactId>
+            <version>1.9</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/libs/LangUtils-1.9.jar</systemPath>
+        </dependency>
     </dependencies>
     <repositories>
         <repository>
@@ -158,6 +196,10 @@
         <repository>
             <id>johm-repo</id>
             <url>https://raw.githubusercontent.com/Dasfaust/johm/mvn-repo/</url>
+        </repository>
+        <repository>
+            <id>thetd</id>
+            <url>http://repo.thetd.me/repository/zhuapublic/</url>
         </repository>
     </repositories>
 </project>
